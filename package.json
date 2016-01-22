@@ -29,7 +29,9 @@
   "bugs": {
     "url": "https://github.com/cloudcome/coolie-html-embed-php/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "ydr-utils": "^41.2.8"
+  },
   "peerDependencies": {},
   "devDependencies": {},
   "license": "MIT"
