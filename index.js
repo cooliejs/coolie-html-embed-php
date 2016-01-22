@@ -7,9 +7,6 @@
 
 'use strict';
 
-
-'use strict';
-
 var dato = require('ydr-utils').dato;
 var random = require('ydr-utils').random;
 
