@@ -1,0 +1,36 @@
+{
+  "name": "coolie-html-embed-php",
+  "version": "0.0.1",
+  "private": true,
+  "description": "coolie-html-embed-php description",
+  "scripts": {},
+  "preferGlobal": false,
+  "bin": {},
+  "engines": {
+    "node": ">= 0.10.0",
+    "iojs": ">= 1.0.0"
+  },
+  "main": "index.js",
+  "keywords": [
+    "cloudcome",
+    "ydr.me"
+  ],
+  "author": {
+    "name": "cloudcome",
+    "email": "cloudcome@163.com",
+    "url": "http://ydr.me"
+  },
+  "contributors": [],
+  "homepage": "https://github.com/cloudcome/coolie-html-embed-php",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cloudcome/coolie-html-embed-php"
+  },
+  "bugs": {
+    "url": "https://github.com/cloudcome/coolie-html-embed-php/issues"
+  },
+  "dependencies": {},
+  "peerDependencies": {},
+  "devDependencies": {},
+  "license": "MIT"
+}
