@@ -8,48 +8,57 @@
 'use strict';
 
 
-
 'use strict';
 
 var dato = require('ydr-utils').dato;
+var random = require('ydr-utils').random;
 
 var pkg = require('./package.json');
 
 var defaults = {
-    attributeName: 'data-original',
-    tagName: 'img',
-    progress: 'pre-html'
+    regexps: [
+        /<\?php[\s\S]*?\?>/gi,
+        /<\?=[\s\S]*?\?>/g
+    ]
+};
+
+/**
+ * 生成一个随机的字符串占位符
+ * @returns {string}
+ */
+var genKey = function () {
+    return '≤' + random.string(10) + random.guid() + '≥';
 };
 
 module.exports = function (configs) {
     configs = dato.extend({}, defaults, configs);
 
-    var cooliePreHTMLAttrResource = function (options) {
-        if (options.progress !== configs.progress) {
-            return options;
+    var sourceMap = Object.create(null);
+    var coolieHTMLEmbedPHP = function (options) {
+        switch (options.progress){
+            case 'pre-html':
+                dato.each(configs.regexps, function (index, regexp) {
+                    options.code = options.code.replace(regexp, function (source) {
+                        var key = genKey();
+                        sourceMap[key] = source;
+                        return key;
+                    });
+                });
+                break;
+
+            case 'post-html':
+                dato.each(sourceMap, function (key, source) {
+                    options.code = options.code.replace(key, source);
+                });
+                break;
         }
-
-        var coolie = this;
-
-        options.code = coolie.matchHTML(options.code, {
-            tag: configs.tagName
-        }, function (node) {
-            if (!node.attrs || !node.attrs[configs.attributeName]) {
-                return node;
-            }
-
-            var url = node.attrs[configs.attributeName];
-            var ret = coolie.buildResPath(url, options.file);
-            node.attrs[configs.attributeName] = ret.url;
-            return node;
-        });
 
         return options;
     };
 
-    cooliePreHTMLAttrResource.package = pkg;
+    coolieHTMLEmbedPHP.package = pkg;
 
-    return cooliePreHTMLAttrResource;
+    return coolieHTMLEmbedPHP;
 };
 
 module.exports.defaults = defaults;

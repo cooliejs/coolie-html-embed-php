@@ -1,7 +1,6 @@
 {
   "name": "coolie-html-embed-php",
-  "version": "0.0.1",
-  "private": true,
+  "version": "0.1.0",
   "description": "coolie-html-embed-php description",
   "scripts": {},
   "preferGlobal": false,
@@ -30,7 +29,7 @@
     "url": "https://github.com/cloudcome/coolie-html-embed-php/issues"
   },
   "dependencies": {
-    "ydr-utils": "^41.2.8"
+    "ydr-utils": "^41.2.9"
   },
   "peerDependencies": {},
   "devDependencies": {},
